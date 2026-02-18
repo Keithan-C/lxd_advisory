@@ -1,28 +1,7 @@
-.container {
-    background-color: #121212; /* Dark mode background */
-    color: #FFFFFF; /* Light text for contrast */
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-button {
-    background-color: #00BFFF; /* Electric Blue */
-    color: #FFFFFF;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #009ACD; /* Slightly darker Electric Blue on hover */
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
-    button {
-        padding: 8px 12px;
-    }
-}
+<head>
+    <style>
+        .knowledge {
+            padding: 80px 20px;
+        }
+    </style>
+</head>
