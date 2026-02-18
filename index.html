@@ -1,44 +1,57 @@
-<!-- Knowledge Section -->
-<section id="knowledge" class="knowledge">
-    <div class="container">
+.knowledge {
+    padding: 100px 20px;
+    text-align: center;
+}
 
-        <h2 class="section-title">Knowledge Hub</h2>
+.section-title {
+    font-size: 2.5rem;
+    color: #00d9ff;
+    margin-bottom: 1rem;
+}
 
-        <p class="section-subtitle">
-            Insights, research, and advisory perspectives on AI policy, cybersecurity,
-            and emerging technology in national security and automotive systems.
-        </p>
+.section-subtitle {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    color: #a8b3cc;
+    font-size: 1.1rem;
+}
 
-        <div class="knowledge-grid">
+.knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
-            <div class="knowledge-card">
-                <h3>EU AI Act</h3>
-                <p>
-                    Practical analysis of regulatory implications for automotive,
-                    ADAS systems, and infrastructure stakeholders.
-                </p>
-                <a href="#" class="knowledge-link">Explore →</a>
-            </div>
+.knowledge-card {
+    background: #111827;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-            <div class="knowledge-card">
-                <h3>Cyber & Sovereignty</h3>
-                <p>
-                    AI and cybersecurity at the intersection of national defense,
-                    resilience, and technological sovereignty.
-                </p>
-                <a href="#" class="knowledge-link">Explore →</a>
-            </div>
+.knowledge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
+}
 
-            <div class="knowledge-card">
-                <h3>Edge AI Systems</h3>
-                <p>
-                    Where real-world AI adoption is happening today —
-                    practical deployments at the edge.
-                </p>
-                <a href="#" class="knowledge-link">Explore →</a>
-            </div>
+.knowledge-card h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
 
-        </div>
+.knowledge-card p {
+    color: #a8b3cc;
+    margin-bottom: 1.5rem;
+}
 
-    </div>
-</section>
+.knowledge-link {
+    color: #00d9ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.knowledge-link:hover {
+    text-decoration: underline;
+}
