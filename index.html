@@ -1,208 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LXD Advisory | Automotive AI Compliance</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!-- Knowledge Section -->
+<section id="knowledge" class="knowledge">
+    <div class="container">
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #0a0e27;
-            color: #e8eef7;
-            line-height: 1.6;
-        }
+        <h2 class="section-title">Knowledge Hub</h2>
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        <p class="section-subtitle">
+            Insights, research, and advisory perspectives on AI policy, cybersecurity,
+            and emerging technology in national security and automotive systems.
+        </p>
 
-        /* Navbar */
-        .navbar {
-            background: #151b3a;
-            padding: 1rem 0;
-            border-bottom: 1px solid #1e2445;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        <div class="knowledge-grid">
 
-        .navbar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00d9ff;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #e8eef7;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #00d9ff;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 100px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #0a0e27 0%, #0f1433 100%);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: #00d9ff;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #a8b3cc;
-            margin-bottom: 2rem;
-        }
-
-        /* Button */
-        .btn {
-            padding: 0.75rem 2rem;
-            background: #00d9ff;
-            color: #0a0e27;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: #0099bb;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
-        }
-
-        /* Services */
-        .services {
-            padding: 80px 20px;
-            background: #151b3a;
-        }
-
-        .services h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #00d9ff;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: #0f1433;
-            border: 1px solid #1e2445;
-            padding: 2rem;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: #00d9ff;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .service-card h3 {
-            color: #e8eef7;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: #a8b3cc;
-        }
-
-        /* Knowledge Hub */
-        .knowledge {
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .knowledge h2 {
-            font-size: 2.5rem;
-            color: #00d9ff;
-            margin-bottom: 1rem;
-        }
-
-        .knowledge p {
-            color: #a8b3cc;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #0f1433;
-            padding: 2rem 20px;
-            text-align: center;
-            border-top: 1px solid #1e2445;
-            color: #a8b3cc;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-content">
-                <div class="logo">LXD Advisory</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#knowledge">Knowledge</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="knowledge-card">
+                <h3>EU AI Act</h3>
+                <p>
+                    Practical analysis of regulatory implications for automotive,
+                    ADAS systems, and infrastructure stakeholders.
+                </p>
+                <a href="#" class="knowledge-link">Explore →</a>
             </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Automating the AI Act</h1>
-            <p>Don't let compliance kill your R&D velocity.</p>
-            <p style="color: #a8b3cc; margin*
-
+            <div class="knowledge-card">
+                <h3>Cyber & Sovereignty</h3>
+                <p>
+                    AI and cybersecurity at the intersection of national defense,
+                    resilience, and technological sovereignty.
+                </p>
+                <a href="#" class="knowledge-link">Explore →</a>
+            </div>
+
+            <div class="knowledge-card">
+                <h3>Edge AI Systems</h3>
+                <p>
+                    Where real-world AI adoption is happening today —
+                    practical deployments at the edge.
+                </p>
+                <a href="#" class="knowledge-link">Explore →</a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
