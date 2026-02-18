@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1>Knowledge Hub</h1>
+        <h1 id="knowledge">Knowledge Hub</h1>
         <p>Featuring Articles, Guides, and Open Source Projects</p>
     </header>
     <main>
