@@ -1,682 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LXD Advisory — What We Offer</title>
-<meta name="description" content="Three structured programmes for automotive and tech teams — the Revenue Cup, the Intelligence Sprint, and AI Enablement.">
-<style>
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg:         #0D0D0B;
-  --surface:    #161614;
-  --surface-2:  #1E1E1C;
-  --ink:        #FAFAF8;
-  --ink-mid:    #C8C8C0;
-  --muted:      #8A8A82;
-  --rule:       #2A2A28;
-  --rc:         #2A7A4E;
-  --rc-lt:      rgba(42,122,78,0.12);
-  --rc-rule:    rgba(42,122,78,0.3);
-  --is:         #1A4DA8;
-  --is-lt:      rgba(26,77,168,0.12);
-  --is-rule:    rgba(26,77,168,0.3);
-  --ai:         #7A3A9A;
-  --ai-lt:      rgba(122,58,154,0.12);
-  --ai-rule:    rgba(122,58,154,0.3);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-
-/* ── NAV ── */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 48px;
-  height: 60px;
-  border-bottom: 1px solid var(--rule);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(13,13,11,0.92);
-  backdrop-filter: blur(12px);
-}
-
-.nav-logo {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ink);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-}
-
-.nav-logo span {
-  font-weight: 300;
-  color: var(--muted);
-}
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-}
-
-.nav-link {
-  font-size: 12px;
-  color: var(--muted);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: color 0.15s;
-}
-
-.nav-link:hover { color: var(--ink); }
-
-.nav-contact {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  background: var(--surface-2);
-  border: 1px solid var(--rule);
-  padding: 7px 16px;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: border-color 0.15s;
-  letter-spacing: 0.02em;
-}
-
-.nav-contact:hover { border-color: var(--muted); }
-
-/* ── HERO ── */
-.hero {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 96px 48px 80px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hero-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--muted);
-}
-
-.hero-heading {
-  font-size: clamp(36px, 5vw, 62px);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 24px;
-  max-width: 700px;
-}
-
-.hero-heading strong {
-  font-weight: 700;
-}
-
-.hero-sub {
-  font-size: 16px;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 540px;
-  margin-bottom: 40px;
-}
-
-.hero-tags {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.hero-tag {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 4px;
-  border: 1px solid var(--rule);
-  color: var(--muted);
-}
-
-/* ── OFFERINGS ── */
-.offerings {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 48px 0;
-}
-
-.offering {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-bottom: 1px solid var(--rule);
-  padding: 64px 0;
-  position: relative;
-}
-
-.offering::before {
-  content: '';
-  position: absolute;
-  left: -48px;
-  right: -48px;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-
-.offering-rc::before { background: var(--rc-lt); }
-.offering-is::before { background: var(--is-lt); }
-.offering-ai::before { background: var(--ai-lt); }
-.offering:hover::before { opacity: 1; }
-
-.offering-left {
-  padding-right: 64px;
-  border-right: 1px solid var(--rule);
-}
-
-.offering-right {
-  padding-left: 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.offering-index {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.offering-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.offering-title {
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-  margin-bottom: 16px;
-}
-
-.offering-problem {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
-
-.offering-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 4px;
-  margin-bottom: 32px;
-}
-
-.offering-what-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-
-.offering-items {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
-  flex: 1;
-}
-
-.offering-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-  color: var(--ink-mid);
-  line-height: 1.55;
-}
-
-.offering-item-marker {
-  font-size: 12px;
-  font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 2px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  color: #fff;
-}
-
-.offering-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule);
-}
-
-.offering-price {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.offering-price-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.offering-price-range {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-
-.offering-cta {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  background: var(--surface-2);
-  border: 1px solid var(--rule);
-  padding: 10px 20px;
-  border-radius: 7px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-
-.offering-cta:hover {
-  border-color: var(--muted);
-  background: var(--surface);
-}
-
-.offering-cta-arrow {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  transition: background 0.15s;
-}
-
-.offering-rc .offering-cta:hover .offering-cta-arrow { background: var(--rc); color: #fff; }
-.offering-is .offering-cta:hover .offering-cta-arrow { background: var(--is); color: #fff; }
-.offering-ai .offering-cta:hover .offering-cta-arrow { background: var(--ai); color: #fff; }
-
-/* ── PILOT BANNER ── */
-.pilot-banner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 48px;
-}
-
-.pilot-inner {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 36px 40px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: center;
-}
-
-.pilot-eyebrow {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--rc);
-  margin-bottom: 10px;
-}
-
-.pilot-heading {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
-  line-height: 1.2;
-}
-
-.pilot-text {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.pilot-text strong { color: var(--ink); font-weight: 600; }
-
-.pilot-cta {
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--rc);
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.15s;
-  flex-shrink: 0;
-}
-
-.pilot-cta:hover { background: #1E6038; }
-
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--rule);
-  padding: 28px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.footer-left {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-}
-
-.footer-link {
-  font-size: 12px;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.footer-link:hover { color: var(--ink); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .nav { padding: 0 20px; }
-  .nav-links { gap: 16px; }
-  .nav-link { display: none; }
-  .hero { padding: 64px 20px 48px; }
-  .offerings { padding: 0 20px; }
-  .offering { grid-template-columns: 1fr; gap: 40px; padding: 48px 0; }
-  .offering::before { left: -20px; right: -20px; }
-  .offering-left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 40px; }
-  .offering-right { padding-left: 0; }
-  .offering-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .pilot-banner { padding: 20px; }
-  .pilot-inner { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
-  footer { padding: 20px; flex-direction: column; gap: 16px; text-align: center; }
-  .footer-links { gap: 16px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .offering::before { transition: none; }
-  .offering-cta { transition: none; }
-}
-
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav class="nav">
-  <a class="nav-logo" href="#">LXD <span>Advisory</span></a>
-  <div class="nav-links">
-    <a class="nav-link" href="#offerings">Offerings</a>
-    <a class="nav-link" href="https://keithan-c.github.io/Keithan-s_lxd_portfolio" target="_blank">Portfolio</a>
-    <a class="nav-link" href="https://keithan-c.github.io/scorecard" target="_blank">AI Scorecard</a>
-    <a class="nav-contact" href="mailto:hello@keithan.eu">hello@keithan.eu</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">LXD Advisory · Ingolstadt, Germany</div>
-  <h1 class="hero-heading">
-    Three programmes.<br>
-    One principle:<br>
-    <strong>change what people do,</strong><br>
-    not just what they know.
-  </h1>
-  <p class="hero-sub">
-    Performance-centred learning design for automotive and tech organisations. Each programme is built around a specific gap — environment, intelligence, or AI adoption — and measured against behaviour at day 30, not attendance on day one.
-  </p>
-  <div class="hero-tags">
-    <span class="hero-tag">Automotive</span>
-    <span class="hero-tag">Tech &amp; SaaS</span>
-    <span class="hero-tag">ADAS &amp; SDV</span>
-    <span class="hero-tag">Sales Enablement</span>
-    <span class="hero-tag">AI Adoption</span>
-    <span class="hero-tag">Munich · Remote</span>
-  </div>
-</div>
-
-<!-- OFFERINGS -->
-<div class="offerings" id="offerings">
-
-  <!-- REVENUE CUP -->
-  <div class="offering offering-rc">
-    <div class="offering-left">
-      <div class="offering-index">
-        <div class="offering-dot" style="background:var(--rc);"></div>
-        Programme 01
-      </div>
-      <h2 class="offering-title" style="color:var(--ink);">The Revenue Cup</h2>
-      <p class="offering-problem">
-        Your teams have commercially valuable intelligence — supplier insights, process innovations, revenue ideas. Right now there is no structured pathway from that intelligence to the people who need to act on it. It stays buried in day-to-day execution and surfaces only by accident, if at all.
-      </p>
-      <div class="offering-tag" style="background:var(--rc-lt);color:var(--rc);border:1px solid var(--rc-rule);">
-        Procurement · Sales · Innovation teams
-      </div>
+<section class="lxd-prg">
+  <div class="lxd-prg-inner">
+    <div class="lxd-prg-head">
+      <div class="lxd-prg-kicker">programmes.beyond_compliance</div>
+      <h2 class="lxd-prg-h2">From compliance infrastructure<br>to <span>organisational capability</span></h2>
+      <p class="lxd-prg-sub">The EU AI Act is one problem. Surfacing commercial and technical intelligence from your teams — and building the conditions for people to actually use AI differently — are three more. These programmes address them.</p>
     </div>
-    <div class="offering-right">
+    <div class="lxd-prg-grid">
+      <a class="lxd-card lxd-card--green" href="mailto:hello@keithan.eu?subject=Revenue Cup enquiry">
+        <div class="lxd-card-terminal">
+          <div class="lxd-terminal-dots"><div class="lxd-dot"></div><div class="lxd-dot"></div><div class="lxd-dot"></div></div>
+          <div class="lxd-terminal-title">revenue_cup.programme</div>
+          <div class="lxd-terminal-tag">pilot open</div>
+        </div>
+        <div class="lxd-card-body">
+          <div class="lxd-card-audience">Procurement · Innovation teams</div>
+          <div class="lxd-card-title">The Revenue Cup</div>
+          <p class="lxd-card-desc">Your procurement and innovation teams have commercially valuable ideas that never reach leadership. Supplier insights, process innovations, cost reduction opportunities — buried in day-to-day execution with no structured pathway to incubation. This 4-week programme surfaces them.</p>
+          <div class="lxd-outputs">
+            <div class="lxd-output"><div class="lxd-output-num">01</div>3–5 data-backed commercial briefs ready for leadership review</div>
+            <div class="lxd-output"><div class="lxd-output-num">02</div>One winning idea entering a 6-week structured incubation arc</div>
+            <div class="lxd-output"><div class="lxd-output-num">03</div>Documented case study with your team's real outcome data</div>
+          </div>
+        </div>
+        <div class="lxd-card-foot">
+          <div><div class="lxd-price-label">// pilot_price</div><div class="lxd-price-amount">€2,500</div></div>
+          <a class="lxd-enquire" href="mailto:hello@keithan.eu?subject=Revenue Cup enquiry">Enquire →</a>
+        </div>
+      </a>
+      <a class="lxd-card lxd-card--blue" href="mailto:hello@keithan.eu?subject=Intelligence Sprint enquiry">
+        <div class="lxd-card-terminal">
+          <div class="lxd-terminal-dots"><div class="lxd-dot"></div><div class="lxd-dot"></div><div class="lxd-dot"></div></div>
+          <div class="lxd-terminal-title">intelligence_sprint.programme</div>
+          <div class="lxd-terminal-tag">Art.4 compliant</div>
+        </div>
+        <div class="lxd-card-body">
+          <div class="lxd-card-audience">ADAS · SDV · Product management</div>
+          <div class="lxd-card-title">The Intelligence Sprint</div>
+          <p class="lxd-card-desc">ADAS and SDV engineering teams sit on technical intelligence that never reaches product management in a usable form. This 4-week programme surfaces those insights — and the structured briefs teams produce are auditable Article 4 AI literacy compliance evidence.</p>
+          <div class="lxd-outputs">
+            <div class="lxd-output"><div class="lxd-output-num">01</div>3–5 structured insight briefs ready for product management review</div>
+            <div class="lxd-output"><div class="lxd-output-num">02</div>One winning insight entering a 6-week PM development pathway</div>
+            <div class="lxd-output"><div class="lxd-output-num">03</div>Auditable Article 4 AI literacy evidence — built during real work</div>
+          </div>
+        </div>
+        <div class="lxd-card-foot">
+          <div><div class="lxd-price-label">// pilot_price</div><div class="lxd-price-amount">€2,500</div></div>
+          <a class="lxd-enquire" href="mailto:hello@keithan.eu?subject=Intelligence Sprint enquiry">Enquire →</a>
+        </div>
+      </a>
+      <a class="lxd-card lxd-card--purple" href="https://keithan-c.github.io/scorecard" target="_blank">
+        <div class="lxd-card-terminal">
+          <div class="lxd-terminal-dots"><div class="lxd-dot"></div><div class="lxd-dot"></div><div class="lxd-dot"></div></div>
+          <div class="lxd-terminal-title">ai_enablement.programme</div>
+          <div class="lxd-terminal-tag">free entry</div>
+        </div>
+        <div class="lxd-card-body">
+          <div class="lxd-card-audience">Corporate teams · GSI partners</div>
+          <div class="lxd-card-title">AI Enablement</div>
+          <p class="lxd-card-desc">Most organisations have run AI programmes in the last 12 months. Most people are working the same way they were before. Not because AI isn't useful — because awareness was never the problem. Environment, incentive, and real work context are. This programme addresses all three.</p>
+          <div class="lxd-outputs">
+            <div class="lxd-output"><div class="lxd-output-num">01</div>Structured AI literacy built around real work — not a training course</div>
+            <div class="lxd-output"><div class="lxd-output-num">02</div>EU AI Act Article 4 readiness — practical and auditable</div>
+            <div class="lxd-output"><div class="lxd-output-num">03</div>Measurable behaviour change at day 30 — not attendance certificates</div>
+          </div>
+        </div>
+        <div class="lxd-card-foot">
+          <div><div class="lxd-price-label">// entry_point</div><div class="lxd-price-amount">Free scorecard</div></div>
+          <a class="lxd-enquire" href="https://keithan-c.github.io/scorecard" target="_blank">Take it →</a>
+        </div>
+      </a>
+    </div>
+    <div class="lxd-pilot">
+      <div class="lxd-pilot-icon">⚡</div>
       <div>
-        <div class="offering-what-label">What it produces</div>
-        <div class="offering-items">
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--rc);">1</div>
-            A 4-week structured challenge that surfaces commercial ideas from teams who already have them — and builds data tool fluency in the process.
-          </div>
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--rc);">2</div>
-            3–5 data-backed business cases ready for leadership review by week 4.
-          </div>
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--rc);">3</div>
-            One winning idea entering a 6-week structured incubation programme — real stakes, not a presentation.
-          </div>
-        </div>
+        <div class="lxd-pilot-label">// pilot_offer · one_slot_per_track</div>
+        <div class="lxd-pilot-title">One organisation. Full facilitation. Pilot pricing.</div>
+        <p class="lxd-pilot-text">The first organisation to run either the Revenue Cup or Intelligence Sprint receives <strong>the full facilitated programme at €2,500</strong> — in exchange for a documented case study with real outcome data. One slot per track. Closes when confirmed.</p>
       </div>
-      <div class="offering-footer">
-        <div class="offering-price">
-          <div class="offering-price-label">Investment from</div>
-          <div class="offering-price-range" style="color:var(--rc);">€4,500</div>
-        </div>
-        <a class="offering-cta" href="mailto:hello@keithan.eu?subject=Revenue Cup enquiry">
-          Enquire <span class="offering-cta-arrow">→</span>
-        </a>
-      </div>
+      <a class="lxd-pilot-btn" href="mailto:hello@keithan.eu?subject=Pilot programme enquiry">Claim pilot slot →</a>
     </div>
-  </div>
-
-  <!-- INTELLIGENCE SPRINT -->
-  <div class="offering offering-is">
-    <div class="offering-left">
-      <div class="offering-index">
-        <div class="offering-dot" style="background:var(--is);"></div>
-        Programme 02
-      </div>
-      <h2 class="offering-title" style="color:var(--ink);">The Intelligence Sprint</h2>
-      <p class="offering-problem">
-        ADAS and SDV engineering teams sit on technically and commercially valuable intelligence — about sensor performance, platform architecture trade-offs, supplier capability gaps, and regulatory risk. Right now that intelligence reaches product management through formal reviews that are too slow, too filtered, and too late to drive real decisions.
-      </p>
-      <div class="offering-tag" style="background:var(--is-lt);color:var(--is);border:1px solid var(--is-rule);">
-        ADAS · SDV · Product management · R&amp;D strategy
-      </div>
-    </div>
-    <div class="offering-right">
+    <div class="lxd-diag">
       <div>
-        <div class="offering-what-label">What it produces</div>
-        <div class="offering-items">
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--is);">1</div>
-            A 4-week structured challenge that surfaces technical insights with commercial value — faster than the current review process allows.
-          </div>
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--is);">2</div>
-            3–5 structured insight briefs ready for product management review — not verbal summaries in a meeting.
-          </div>
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--is);">3</div>
-            One winning insight entering a 6-week development pathway with a named product manager as owner.
-          </div>
-        </div>
+        <div class="lxd-diag-label">// free · no_obligation</div>
+        <div class="lxd-diag-title">60-minute diagnostic conversation</div>
+        <p class="lxd-diag-text">Before anything else — a structured 60-minute conversation about your team's commercial intelligence or AI adoption challenge. Five questions. Three specific design recommendations at the end, regardless of whether we work together.</p>
       </div>
-      <div class="offering-footer">
-        <div class="offering-price">
-          <div class="offering-price-label">Investment from</div>
-          <div class="offering-price-range" style="color:var(--is);">€5,500</div>
-        </div>
-        <a class="offering-cta" href="mailto:hello@keithan.eu?subject=Intelligence Sprint enquiry">
-          Enquire <span class="offering-cta-arrow">→</span>
-        </a>
-      </div>
+      <a class="lxd-diag-btn" href="mailto:hello@keithan.eu?subject=60-minute diagnostic">Book the call →</a>
     </div>
   </div>
-
-  <!-- AI ENABLEMENT -->
-  <div class="offering offering-ai">
-    <div class="offering-left">
-      <div class="offering-index">
-        <div class="offering-dot" style="background:var(--ai);"></div>
-        Programme 03
-      </div>
-      <h2 class="offering-title" style="color:var(--ink);">AI Enablement</h2>
-      <p class="offering-problem">
-        Most organisations have run AI programmes in the last 12 months. Most people are working exactly the same way they were before. Not because AI isn't useful — because awareness was never the problem. The real gap is environment, incentive, and a reason to use AI in the context of real work.
-      </p>
-      <div class="offering-tag" style="background:var(--ai-lt);color:var(--ai);border:1px solid var(--ai-rule);">
-        Corporate teams · EU AI Act · GSI partners · Technical teams
-      </div>
-    </div>
-    <div class="offering-right">
-      <div>
-        <div class="offering-what-label">What it produces</div>
-        <div class="offering-items">
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--ai);">1</div>
-            A structured AI literacy and readiness programme built around what people need to do differently — not what AI is.
-          </div>
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--ai);">2</div>
-            EU AI Act Article 4 compliance readiness — practical, auditable, and grounded in real work contexts.
-          </div>
-          <div class="offering-item">
-            <div class="offering-item-marker" style="background:var(--ai);">3</div>
-            Measurable behaviour change at day 30 — not attendance certificates and awareness scores.
-          </div>
-        </div>
-      </div>
-      <div class="offering-footer">
-        <div class="offering-price">
-          <div class="offering-price-label">Start with</div>
-          <div class="offering-price-range" style="color:var(--ai);">Free scorecard</div>
-        </div>
-        <a class="offering-cta" href="https://keithan-c.github.io/scorecard" target="_blank">
-          Take the scorecard <span class="offering-cta-arrow">→</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- PILOT BANNER -->
-<div class="pilot-banner">
-  <div class="pilot-inner">
-    <div>
-      <div class="pilot-eyebrow">Pilot offer — limited availability</div>
-      <div class="pilot-heading">One organisation. Full facilitation. Pilot pricing.</div>
-      <p class="pilot-text">
-        The first organisation to run either the Revenue Cup or Intelligence Sprint receives <strong>Tier 2 at Tier 1 pricing</strong> — the full facilitated programme in exchange for a documented case study with real outcome data. One organisation. Closes when a pilot is confirmed.
-      </p>
-    </div>
-    <a class="pilot-cta" href="mailto:hello@keithan.eu?subject=Pilot programme enquiry">
-      Discuss the pilot →
-    </a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-left">LXD Advisory · Keithan Cokbilir · Ingolstadt, Germany</div>
-  <div class="footer-links">
-    <a class="footer-link" href="https://keithan-c.github.io/Keithan-s_lxd_portfolio" target="_blank">Portfolio</a>
-    <a class="footer-link" href="https://keithan-c.github.io/scorecard" target="_blank">AI Scorecard</a>
-    <a class="footer-link" href="https://www.linkedin.com/in/keithan-cokbilir-b929a830" target="_blank">LinkedIn</a>
-    <a class="footer-link" href="mailto:hello@keithan.eu">hello@keithan.eu</a>
-  </div>
-</footer>
-
-</body>
-</html>
+</section>
