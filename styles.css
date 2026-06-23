@@ -1,61 +1,73 @@
-<head>
-   /* Knowledge Section Styles */
-.knowledge {
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    color: #00d9ff;
-    margin-bottom: 1rem;
-}
-
-.section-subtitle {
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    color: #a8b3cc;
-    font-size: 1.1rem;
-}
-
-.knowledge-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.knowledge-card {
-    background: #111827;
-    padding: 2rem;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.knowledge-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
-}
-
-.knowledge-card h3 {
-    color: #ffffff;
-    margin-bottom: 1rem;
-}
-
-.knowledge-card p {
-    color: #a8b3cc;
-    margin-bottom: 1.5rem;
-}
-
-.knowledge-link {
-    color: #00d9ff;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.knowledge-link:hover {
-    text-decoration: underline;
-}
-
-</head>
+/* ── LXD PROGRAMMES SECTION ── */
+.lxd-prg{--bg:#0F1117;--surface:#161B26;--surface-h:#1C2336;--ink:#F0F2F8;--ink-mid:#C8CEDE;--muted:#7A8299;--rule:#252D3F;--green:#22C55E;--green-dim:rgba(34,197,94,0.12);--green-glow:rgba(34,197,94,0.06);--blue:#3B82F6;--blue-dim:rgba(59,130,246,0.12);--blue-glow:rgba(59,130,246,0.06);--purple:#A78BFA;--purple-dim:rgba(167,139,250,0.12);--purple-glow:rgba(167,139,250,0.06);--amber:#F59E0B;--amber-dim:rgba(245,158,11,0.15);}
+.lxd-prg{background:var(--bg);padding:96px 0 80px;border-top:1px solid var(--rule);position:relative;overflow:hidden;}
+.lxd-prg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:48px 48px;opacity:0.3;pointer-events:none;}
+.lxd-prg-inner{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+.lxd-prg-head{margin-bottom:56px;}
+.lxd-prg-kicker{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.lxd-prg-kicker::before{content:'//';color:var(--blue);font-size:14px;}
+.lxd-prg-h2{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-0.03em;color:var(--ink);line-height:1.1;margin-bottom:14px;}
+.lxd-prg-h2 span{color:var(--blue);}
+.lxd-prg-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:540px;}
+.lxd-prg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+.lxd-card{background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:border-color 0.2s,background 0.2s,transform 0.2s,box-shadow 0.2s;position:relative;}
+.lxd-card::after{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.lxd-card--green::after{background:var(--green-glow);}
+.lxd-card--blue::after{background:var(--blue-glow);}
+.lxd-card--purple::after{background:var(--purple-glow);}
+.lxd-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.lxd-card--green:hover{border-color:var(--green);}
+.lxd-card--blue:hover{border-color:var(--blue);}
+.lxd-card--purple:hover{border-color:var(--purple);}
+.lxd-card:hover::after{opacity:1;}
+.lxd-card-terminal{padding:10px 14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.2);position:relative;z-index:1;}
+.lxd-terminal-dots{display:flex;gap:5px;flex-shrink:0;}
+.lxd-dot{width:10px;height:10px;border-radius:50%;background:var(--rule);}
+.lxd-card--green .lxd-dot:first-child{background:var(--green);}
+.lxd-card--blue .lxd-dot:first-child{background:var(--blue);}
+.lxd-card--purple .lxd-dot:first-child{background:var(--purple);}
+.lxd-terminal-title{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:11px;color:var(--muted);flex:1;}
+.lxd-card--green .lxd-terminal-title{color:var(--green);}
+.lxd-card--blue .lxd-terminal-title{color:var(--blue);}
+.lxd-card--purple .lxd-terminal-title{color:var(--purple);}
+.lxd-terminal-tag{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:10px;color:var(--muted);background:var(--rule);padding:2px 7px;border-radius:3px;}
+.lxd-card-body{padding:22px;flex:1;display:flex;flex-direction:column;position:relative;z-index:1;}
+.lxd-card-audience{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:14px;align-self:flex-start;}
+.lxd-card--green .lxd-card-audience{background:var(--green-dim);color:var(--green);}
+.lxd-card--blue .lxd-card-audience{background:var(--blue-dim);color:var(--blue);}
+.lxd-card--purple .lxd-card-audience{background:var(--purple-dim);color:var(--purple);}
+.lxd-card-title{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1.2;margin-bottom:10px;}
+.lxd-card-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:20px;flex:1;}
+.lxd-outputs{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.lxd-output{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--ink-mid);line-height:1.5;}
+.lxd-output-num{font-family:'SF Mono','Fira Code',monospace;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.lxd-card--green .lxd-output-num{background:var(--green-dim);color:var(--green);}
+.lxd-card--blue .lxd-output-num{background:var(--blue-dim);color:var(--blue);}
+.lxd-card--purple .lxd-output-num{background:var(--purple-dim);color:var(--purple);}
+.lxd-card-foot{padding:14px 22px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.15);position:relative;z-index:1;}
+.lxd-price-label{font-family:'SF Mono','Fira Code',monospace;font-size:10px;color:var(--muted);margin-bottom:2px;letter-spacing:0.06em;}
+.lxd-price-amount{font-size:18px;font-weight:700;letter-spacing:-0.02em;}
+.lxd-card--green .lxd-price-amount{color:var(--green);}
+.lxd-card--blue .lxd-price-amount{color:var(--blue);}
+.lxd-card--purple .lxd-price-amount{color:var(--purple);}
+.lxd-enquire{font-size:12px;font-weight:600;padding:8px 16px;border-radius:7px;border:1px solid var(--rule);color:var(--ink);background:transparent;text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+.lxd-card--green .lxd-enquire:hover{border-color:var(--green);color:var(--green);}
+.lxd-card--blue .lxd-enquire:hover{border-color:var(--blue);color:var(--blue);}
+.lxd-card--purple .lxd-enquire:hover{border-color:var(--purple);color:var(--purple);}
+.lxd-pilot{background:var(--amber-dim);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;margin-bottom:14px;position:relative;z-index:1;}
+.lxd-pilot-icon{font-size:28px;flex-shrink:0;}
+.lxd-pilot-label{font-family:'SF Mono','Fira Code',monospace;font-size:10px;color:var(--amber);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;}
+.lxd-pilot-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px;letter-spacing:-0.01em;}
+.lxd-pilot-text{font-size:13px;color:var(--muted);line-height:1.55;}
+.lxd-pilot-text strong{color:var(--ink-mid);font-weight:600;}
+.lxd-pilot-btn{font-size:13px;font-weight:700;color:#0A0E17;background:var(--amber);padding:11px 22px;border-radius:8px;text-decoration:none;white-space:nowrap;transition:background 0.15s;flex-shrink:0;}
+.lxd-pilot-btn:hover{background:#D97706;}
+.lxd-diag{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:22px 28px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;position:relative;z-index:1;}
+.lxd-diag-label{font-family:'SF Mono','Fira Code',monospace;font-size:10px;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
+.lxd-diag-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;}
+.lxd-diag-text{font-size:13px;color:var(--muted);line-height:1.55;}
+.lxd-diag-btn{font-size:13px;font-weight:700;color:#0F1117;background:var(--ink);padding:12px 24px;border-radius:8px;text-decoration:none;white-space:nowrap;transition:background 0.15s;flex-shrink:0;}
+.lxd-diag-btn:hover{background:#fff;}
+@media(max-width:860px){.lxd-prg-grid{grid-template-columns:1fr 1fr;}.lxd-card:last-child{grid-column:1/-1;}}
+@media(max-width:600px){.lxd-prg{padding:64px 0 56px;}.lxd-prg-inner{padding:0 20px;}.lxd-prg-grid{grid-template-columns:1fr;}.lxd-card:last-child{grid-column:auto;}.lxd-pilot{grid-template-columns:1fr;gap:14px;}.lxd-pilot-icon{display:none;}.lxd-diag{grid-template-columns:1fr;gap:16px;}}
+@media(prefers-reduced-motion:reduce){.lxd-card{transition:none;}.lxd-card::after{transition:none;}}
