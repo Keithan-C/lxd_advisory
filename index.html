@@ -1,11 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LXD Advisory — EU AI Act Article 12/19 Compliance Production Sprints</title>
+<style>
+/* ── EXISTING SITE STYLES — DO NOT TOUCH ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: #0a0e17;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+.countdown-banner {
+  background: #dc2626;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 32px 64px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #f1f5f9;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: #94a3b8;
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.hero-stat-num { font-size: 28px; font-weight: 800; color: #3b82f6; line-height: 1; }
+.hero-stat-label { font-size: 12px; color: #64748b; margin-top: 3px; }
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #2563eb; }
+
+.btn-secondary {
+  background: transparent;
+  color: #94a3b8;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #1e293b;
+  transition: all 0.15s;
+}
+.btn-secondary:hover { border-color: #3b82f6; color: #e2e8f0; }
+
+/* sections */
+.site-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 64px 32px;
+  border-top: 1px solid #1e293b;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: 8px;
+}
+
+.section-h2 {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.section-intro {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 32px;
+  max-width: 540px;
+  line-height: 1.65;
+}
+
+/* compliance gap */
+.gap-callout {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-left: 4px solid #dc2626;
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+}
+
+.gap-callout p {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.gap-callout p:last-child { margin-bottom: 0; }
+
+.gap-callout strong { color: #f1f5f9; }
+
+/* artifact list */
+.artifact-list {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  color: #22c55e;
+  line-height: 2;
+}
+
+/* sprint weeks */
+.sprint-weeks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sprint-week {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.sprint-week-icon { font-size: 22px; margin-bottom: 10px; }
+.sprint-week-title { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+.sprint-week-desc { font-size: 13px; color: #64748b; line-height: 1.55; }
+
+/* testimonials */
+.testimonials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.testimonial {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.testimonial-author {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.testimonial-author strong { color: #e2e8f0; }
+
+/* workshop */
+.workshop-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.workshop-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: 8px;
+}
+
+.workshop-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.workshop-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.workshop-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workshop-item {
+  font-size: 13px;
+  color: #94a3b8;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.workshop-item::before { content: '→'; color: #3b82f6; flex-shrink: 0; font-weight: 700; }
+
+.workshop-price-block { text-align: center; flex-shrink: 0; }
+.workshop-price { font-size: 36px; font-weight: 800; color: #3b82f6; line-height: 1; }
+.workshop-price-label { font-size: 12px; color: #64748b; margin-top: 4px; margin-bottom: 16px; }
+
+/* tools grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tool-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 18px 20px;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+.tool-card:hover { border-color: #3b82f6; }
+
+.tool-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: 6px;
+}
+
+.tool-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 5px;
+}
+
+.tool-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.tool-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+/* playbook */
+.playbook-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border: 1px solid #312e81;
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.playbook-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #818cf8;
+  margin-bottom: 8px;
+}
+
+.playbook-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 8px;
+}
+
+.playbook-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.playbook-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.playbook-item {
+  font-size: 12px;
+  color: #818cf8;
+  display: flex;
+  gap: 6px;
+}
+
+.playbook-item::before { content: '—'; color: #4338ca; flex-shrink: 0; }
+
+.playbook-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* closing CTA */
+.closing-cta {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.closing-cta-days { font-size: 64px; font-weight: 800; color: #dc2626; line-height: 1; margin-bottom: 8px; }
+.closing-cta-label { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+.closing-cta-text { font-size: 14px; color: #94a3b8; line-height: 1.7; margin-bottom: 20px; }
+.closing-cta-text strong { color: #f1f5f9; }
+
+/* ── NEW PROGRAMMES SECTION CSS ── */
+.lxd-prg {
+  --bg: #0F1117;
+  --surface: #161B26;
+  --ink: #F0F2F8;
+  --ink-mid: #C8CEDE;
+  --muted: #7A8299;
+  --rule: #252D3F;
+  --green: #22C55E;
+  --green-dim: rgba(34,197,94,0.12);
+  --green-glow: rgba(34,197,94,0.06);
+  --blue: #3B82F6;
+  --blue-dim: rgba(59,130,246,0.12);
+  --blue-glow: rgba(59,130,246,0.06);
+  --purple: #A78BFA;
+  --purple-dim: rgba(167,139,250,0.12);
+  --purple-glow: rgba(167,139,250,0.06);
+  --amber: #F59E0B;
+  --amber-dim: rgba(245,158,11,0.15);
+}
+
+.lxd-prg {
+  background: var(--bg);
+  padding: 96px 0 80px;
+  border-top: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+
+.lxd-prg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.lxd-prg-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.lxd-prg-head { margin-bottom: 56px; }
+
+.lxd-prg-kicker {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lxd-prg-kicker::before { content: '//'; color: var(--blue); font-size: 14px; }
+
+.lxd-prg-h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.lxd-prg-h2 span { color: var(--blue); }
+
+.lxd-prg-sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+.lxd-prg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.lxd-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.lxd-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.lxd-card--green::after  { background: var(--green-glow); }
+.lxd-card--blue::after   { background: var(--blue-glow); }
+.lxd-card--purple::after { background: var(--purple-glow); }
+
+.lxd-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.lxd-card--green:hover  { border-color: var(--green); }
+.lxd-card--blue:hover   { border-color: var(--blue); }
+.lxd-card--purple:hover { border-color: var(--purple); }
+.lxd-card:hover::after  { opacity: 1; }
+
+.lxd-card-terminal {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.lxd-terminal-dots { display: flex; gap: 5px; flex-shrink: 0; }
+
+.lxd-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rule); }
+
+.lxd-card--green  .lxd-dot:first-child { background: var(--green); }
+.lxd-card--blue   .lxd-dot:first-child { background: var(--blue); }
+.lxd-card--purple .lxd-dot:first-child { background: var(--purple); }
+
+.lxd-terminal-title {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  flex: 1;
+}
+
+.lxd-card--green  .lxd-terminal-title { color: var(--green); }
+.lxd-card--blue   .lxd-terminal-title { color: var(--blue); }
+.lxd-card--purple .lxd-terminal-title { color: var(--purple); }
+
+.lxd-terminal-tag {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  background: var(--rule);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+
+.lxd-card-body {
+  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.lxd-card-audience {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 14px;
+  align-self: flex-start;
+}
+
+.lxd-card--green  .lxd-card-audience { background: var(--green-dim);  color: var(--green); }
+.lxd-card--blue   .lxd-card-audience { background: var(--blue-dim);   color: var(--blue); }
+.lxd-card--purple .lxd-card-audience { background: var(--purple-dim); color: var(--purple); }
+
+.lxd-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.lxd-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.lxd-outputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+
+.lxd-output {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+.lxd-output-num {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.lxd-card--green  .lxd-output-num { background: var(--green-dim);  color: var(--green); }
+.lxd-card--blue   .lxd-output-num { background: var(--blue-dim);   color: var(--blue); }
+.lxd-card--purple .lxd-output-num { background: var(--purple-dim); color: var(--purple); }
+
+.lxd-card-foot {
+  padding: 14px 22px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.lxd-price-label {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 2px;
+  letter-spacing: 0.06em;
+}
+
+.lxd-price-amount { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.lxd-card--green  .lxd-price-amount { color: var(--green); }
+.lxd-card--blue   .lxd-price-amount { color: var(--blue); }
+.lxd-card--purple .lxd-price-amount { color: var(--purple); }
+
+.lxd-enquire {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 7px;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.lxd-card--green  .lxd-enquire:hover { border-color: var(--green);  color: var(--green); }
+.lxd-card--blue   .lxd-enquire:hover { border-color: var(--blue);   color: var(--blue); }
+.lxd-card--purple .lxd-enquire:hover { border-color: var(--purple); color: var(--purple); }
+
+.lxd-pilot {
+  background: var(--amber-dim);
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 12px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.lxd-pilot-icon { font-size: 28px; flex-shrink: 0; }
+.lxd-pilot-label { font-family: 'SF Mono','Fira Code',monospace; font-size: 10px; color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+.lxd-pilot-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 3px; letter-spacing: -0.01em; }
+.lxd-pilot-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.lxd-pilot-text strong { color: var(--ink-mid); font-weight: 600; }
+.lxd-pilot-btn { font-size: 13px; font-weight: 700; color: #0A0E17; background: var(--amber); padding: 11px 22px; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+.lxd-pilot-btn:hover { background: #D97706; }
+
+.lxd-diag {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 22px 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lxd-diag-label { font-family: 'SF Mono','Fira Code',monospace; font-size: 10px; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
+.lxd-diag-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+.lxd-diag-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.lxd-diag-btn { font-size: 13px; font-weight: 700; color: #0F1117; background: var(--ink); padding: 12px 24px; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+.lxd-diag-btn:hover { background: #fff; }
+
+/* ── FOOTER ── */
+.site-footer {
+  border-top: 1px solid #1e293b;
+  padding: 40px 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 4px; }
+.footer-brand-sub { font-size: 12px; color: #64748b; }
+
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.footer-link { font-size: 13px; color: #64748b; text-decoration: none; transition: color 0.15s; }
+.footer-link:hover { color: #e2e8f0; }
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid #1e293b;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .lxd-prg-grid { grid-template-columns: 1fr 1fr; }
+  .lxd-card:last-child { grid-column: 1 / -1; }
+  .sprint-weeks { grid-template-columns: 1fr; }
+  .testimonials { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .workshop-card { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 48px 20px 40px; }
+  .site-section { padding: 48px 20px; }
+  .lxd-prg { padding: 64px 0 56px; }
+  .lxd-prg-inner { padding: 0 20px; }
+  .lxd-prg-grid { grid-template-columns: 1fr; }
+  .lxd-card:last-child { grid-column: auto; }
+  .lxd-pilot { grid-template-columns: 1fr; gap: 14px; }
+  .lxd-pilot-icon { display: none; }
+  .lxd-diag { grid-template-columns: 1fr; gap: 16px; }
+  .hero-stats { gap: 20px; }
+  .site-footer { padding: 32px 20px; }
+  .site-footer-top { flex-direction: column; gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lxd-card, .lxd-card::after { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- COUNTDOWN BANNER -->
+<div class="countdown-banner">
+  ⚠ EU AI ACT ENFORCEMENT: AUGUST 2, 2026 — <span id="days-remaining">0</span> DAYS REMAINING
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">For ADAS Engineering Teams at OEMs and Tier-1 Suppliers</div>
+  <h1>We Don't Train Teams on the AI Act. We Run Production Sprints That Generate It.</h1>
+  <p class="hero-sub">Your team generates JSON schemas and Technical Files for EU AI Act Articles 12 &amp; 19 in 21 days. Not slide decks. Not homework. Production artifacts that integrate directly into your CI/CD pipeline.</p>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">21</div><div class="hero-stat-label">Day Sprint</div></div>
+    <div><div class="hero-stat-num">0</div><div class="hero-stat-label">R&amp;D Delay</div></div>
+    <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Artifacts</div></div>
+  </div>
+  <div class="hero-btns">
+    <a class="btn-primary" href="https://calendly.com/hello-keithan/calendly-com-keithan-audit-gap">Book Architecture Jam →</a>
+    <a class="btn-secondary" href="https://www.lxdadvisory.de/pricing_page.html">View Pricing &amp; Details</a>
+  </div>
+</div>
+
+<!-- COMPLIANCE GAP -->
+<section class="site-section">
+  <div class="section-label">The problem</div>
+  <h2 class="section-h2">The Compliance Infrastructure Gap</h2>
+  <div class="gap-callout">
+    <p>Most ADAS infrastructure teams think they're compliant because they "have logs."</p>
+    <p>But Article 12 doesn't ask if you log data. It asks: <strong>"Show me your logging schema that maps to Article 12 requirements."</strong></p>
+    <p>That schema doesn't exist.</p>
+    <p>Your infrastructure team is waiting for ADAS to define it. ADAS is waiting for compliance to define it. Compliance is waiting for legal. Legal is waiting for IT.</p>
+    <p><strong>Nobody's building it. The gap won't close itself. The August 2026 deadline will not move.</strong></p>
+  </div>
+</section>
+
+<!-- WHAT GETS GENERATED -->
+<section class="site-section">
+  <div class="section-label">What gets built</div>
+  <h2 class="section-h2">What Gets Generated in 21 Days</h2>
+  <p class="section-intro">This isn't training. It's a production sprint where your ADAS team generates version-controlled code artifacts your systems consume programmatically.</p>
+  <div class="artifact-list">
+    logging_schema_v1.0.json — Article 12-compliant, machine-readable<br>
+    article_12_technical_file.xml — EU-required format, auto-generated<br>
+    esim_configuration.yaml — Infrastructure-as-Code for eSIM/ACSP<br>
+    compliance_validator.py — Automated pre-deployment checks<br>
+    human_oversight_protocol.json — Article 14 procedures as config<br>
+    audit_defense_brief.md — Auto-generated from schema annotations
+  </div>
+  <p style="font-size:13px;color:#64748b;margin-bottom:24px;">These integrate directly into your CI/CD pipeline. When your ADAS model version increments, your schemas update automatically.</p>
+  <a class="btn-primary" href="https://calendly.com/hello-keithan/calendly-com-keithan-audit-gap">Book Architecture Jam →</a>
+</section>
+
+<!-- 21-DAY SPRINT -->
+<section class="site-section">
+  <div class="section-label">The programme</div>
+  <h2 class="section-h2">The 21-Day Production Sprint</h2>
+  <p class="section-intro">Three half-day sessions across three weeks. Your team produces artifacts during sessions — not as homework after.</p>
+  <div class="sprint-weeks">
+    <div class="sprint-week">
+      <div class="sprint-week-icon">📐</div>
+      <div class="sprint-week-title">Week 1: Schema Generation</div>
+      <p class="sprint-week-desc">Your ADAS team generates baseline JSON schema for Article 12. Define data types, field mappings, retention policies as code. Initialize Technical File structure in your repo.</p>
+    </div>
+    <div class="sprint-week">
+      <div class="sprint-week-icon">🔧</div>
+      <div class="sprint-week-title">Week 2: Validation &amp; Refinement</div>
+      <p class="sprint-week-desc">Iterate schema based on mock audit feedback. Add validation rules. Generate Article 19 log control policies as configuration. Build automated compliance checks.</p>
+    </div>
+    <div class="sprint-week">
+      <div class="sprint-week-icon">🚀</div>
+      <div class="sprint-week-title">Week 3: CI/CD Integration</div>
+      <p class="sprint-week-desc">Integrate schemas into deployment pipeline. Configure eSIM/ACSP to consume schemas programmatically. Generate Technical Files automatically from schema annotations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="site-section">
+  <div class="section-label">From the field</div>
+  <h2 class="section-h2">What Engineering Heads Say</h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <p class="testimonial-text">"LXD Advisory didn't just train our team — they built the methodology we now use across our entire ADAS portfolio. Three weeks to audit-ready documentation. We expected a course. We got a capability."</p>
+      <div class="testimonial-author">— <strong>VP Engineering</strong>, Tier-1 Automotive Supplier, Germany</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">"We had ASPICE L3 in place but no idea how it mapped to the AI Act. The mapping engagement showed us we were 60% there already. We built only the delta. Saved us months."</p>
+      <div class="testimonial-author">— <strong>Chief Architect</strong>, Automotive AI Startup, Munich</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE 4 WORKSHOP -->
+<section class="site-section">
+  <div class="section-label">Article 4 AI Literacy</div>
+  <h2 class="section-h2">Article 4 AI Literacy Workshop</h2>
+  <p class="section-intro">Before your team can build compliant systems, they need documented AI literacy. Article 4 requires it. An auditor will ask for it.</p>
+  <div class="workshop-card">
+    <div>
+      <div class="workshop-tag">EU AI Act · Article 4 · Live Workshop</div>
+      <div class="workshop-title">AI Literacy that holds up under audit.</div>
+      <p class="workshop-desc">A 90-minute live working session for ADAS engineering teams. Built around how engineers actually learn — not how compliance teams prefer to deliver it. Every attendee leaves with a completed gap analysis, not a generic checklist.</p>
+      <div class="workshop-items">
+        <div class="workshop-item">Identify which team members are in scope under Article 4 — and explain why to an auditor.</div>
+        <div class="workshop-item">Define what Article 4 compliance looks like for three specific engineering roles.</div>
+        <div class="workshop-item">Audit your current training against the 5 components of a compliant AI literacy trail.</div>
+        <div class="workshop-item">Leave with a completed gap analysis for your team — not a checklist you'll file and forget.</div>
+      </div>
+    </div>
+    <div class="workshop-price-block">
+      <div class="workshop-price">€199</div>
+      <div class="workshop-price-label">per seat</div>
+      <a class="btn-primary" style="display:block;text-align:center;" href="https://www.lxdadvisory.de/workshop-page.html">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FREE TOOLS -->
+<section class="site-section">
+  <div class="section-label">Free tools</div>
+  <h2 class="section-h2">Free Tools &amp; Resources</h2>
+  <p class="section-intro">Prove to yourself we understand the technical depth before booking anything.</p>
+  <div class="tools-grid">
+    <a class="tool-card" href="https://keithan-c.github.io/scorecard/" target="_blank">
+      <div class="tool-tag">Interactive Tool</div>
+      <div class="tool-title">Article 12/19 Readiness Scorecard</div>
+      <p class="tool-desc">10-question diagnostic for OTA infrastructure teams. Instant score, gap analysis, recommended action plan. 3 minutes.</p>
+      <div class="tool-link">Take the Scorecard →</div>
+    </a>
+    <a class="tool-card" href="https://keithan-c.github.io/ai-act-article-12-19-checklist/" target="_blank">
+      <div class="tool-tag">Living Checklist</div>
+      <div class="tool-title">46-Item Compliance Tracker</div>
+      <p class="tool-desc">Interactive checklist for infrastructure and ADAS teams. Progress saves automatically. Flag blockers. Export status.</p>
+      <div class="tool-link">Access Checklist →</div>
+    </a>
+    <a class="tool-card" href="https://github.com/Keithan-C/adas-logging-schema-template" target="_blank">
+      <div class="tool-tag">GitHub Template</div>
+      <div class="tool-title">ADAS Logging Schema</div>
+      <p class="tool-desc">Article 12-compliant logging schema template. Maps each data field to specific compliance requirements. Fork and customize.</p>
+      <div class="tool-link">View on GitHub →</div>
+    </a>
+    <a class="tool-card" href="https://keithan-c.github.io/Playbook/" target="_blank">
+      <div class="tool-tag">New — Free + Premium</div>
+      <div class="tool-title">AI Governance Playbook for ADAS Teams</div>
+      <p class="tool-desc">A complete EU AI Act compliance framework for ADAS engineering teams — from risk classification to governance checkpoints. Free to read online.</p>
+      <div class="tool-link">Read Free Playbook →</div>
+    </a>
+  </div>
+  <div class="playbook-card">
+    <div class="playbook-tag">Interactive Playbook</div>
+    <div class="playbook-title">AI Governance Playbook for ADAS Teams</div>
+    <p class="playbook-desc">A complete EU AI Act compliance framework covering Articles 9–15, Annex IV Technical File requirements, and a full RACI matrix. Free to read online. Premium templates available.</p>
+    <div class="playbook-items">
+      <div class="playbook-item">Risk classification table for 8 ADAS components (pedestrian detection, DMS, AEB, LKA…)</div>
+      <div class="playbook-item">Split-screen gap analysis: What teams have vs. what homologation asks for</div>
+      <div class="playbook-item">Interactive governance checkpoints across 5 development stages</div>
+      <div class="playbook-item">Full RACI matrix: 10 compliance activities × 7 engineering roles</div>
+      <div class="playbook-item">Premium: Annex IV JSON schema, Art. 12 logging implementation, CI/CD validator configs</div>
+    </div>
+    <div class="playbook-btns">
+      <a class="btn-primary" href="https://keithan-c.github.io/Playbook/">📖 Read Free Playbook →</a>
+      <a class="btn-secondary" href="https://buy.stripe.com/3cIdRbdwsfNmfsD1dX87K00">🔒 Unlock Premium →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="site-section">
+  <div class="closing-cta">
+    <div class="closing-cta-days" id="days-closing">0</div>
+    <div class="closing-cta-label">days remaining until enforcement</div>
+    <p class="closing-cta-text">A 21-day sprint started today finishes in three weeks. That leaves months to scale to other teams and complete documentation across your systems portfolio.<br><br><strong>Teams that started in Q4 2025 are finishing their first pilots now. Everyone else is behind.</strong><br><br>The margin is gone. The window to debate has closed.</p>
+    <a class="btn-primary" href="https://calendly.com/hello-keithan/calendly-com-keithan-audit-gap">Book Your Sprint Slot →</a>
+  </div>
+</section>
+
+<!-- ── NEW PROGRAMMES SECTION ── -->
 <section class="lxd-prg">
   <div class="lxd-prg-inner">
+
     <div class="lxd-prg-head">
       <div class="lxd-prg-kicker">programmes.beyond_compliance</div>
       <h2 class="lxd-prg-h2">From compliance infrastructure<br>to <span>organisational capability</span></h2>
       <p class="lxd-prg-sub">The EU AI Act is one problem. Surfacing commercial and technical intelligence from your teams — and building the conditions for people to actually use AI differently — are three more. These programmes address them.</p>
     </div>
+
     <div class="lxd-prg-grid">
+
       <a class="lxd-card lxd-card--green" href="mailto:hello@keithan.eu?subject=Revenue Cup enquiry">
         <div class="lxd-card-terminal">
           <div class="lxd-terminal-dots"><div class="lxd-dot"></div><div class="lxd-dot"></div><div class="lxd-dot"></div></div>
@@ -27,6 +974,7 @@
           <a class="lxd-enquire" href="mailto:hello@keithan.eu?subject=Revenue Cup enquiry">Enquire →</a>
         </div>
       </a>
+
       <a class="lxd-card lxd-card--blue" href="mailto:hello@keithan.eu?subject=Intelligence Sprint enquiry">
         <div class="lxd-card-terminal">
           <div class="lxd-terminal-dots"><div class="lxd-dot"></div><div class="lxd-dot"></div><div class="lxd-dot"></div></div>
@@ -48,6 +996,7 @@
           <a class="lxd-enquire" href="mailto:hello@keithan.eu?subject=Intelligence Sprint enquiry">Enquire →</a>
         </div>
       </a>
+
       <a class="lxd-card lxd-card--purple" href="https://keithan-c.github.io/scorecard" target="_blank">
         <div class="lxd-card-terminal">
           <div class="lxd-terminal-dots"><div class="lxd-dot"></div><div class="lxd-dot"></div><div class="lxd-dot"></div></div>
@@ -69,7 +1018,9 @@
           <a class="lxd-enquire" href="https://keithan-c.github.io/scorecard" target="_blank">Take it →</a>
         </div>
       </a>
+
     </div>
+
     <div class="lxd-pilot">
       <div class="lxd-pilot-icon">⚡</div>
       <div>
@@ -79,6 +1030,7 @@
       </div>
       <a class="lxd-pilot-btn" href="mailto:hello@keithan.eu?subject=Pilot programme enquiry">Claim pilot slot →</a>
     </div>
+
     <div class="lxd-diag">
       <div>
         <div class="lxd-diag-label">// free · no_obligation</div>
@@ -87,5 +1039,44 @@
       </div>
       <a class="lxd-diag-btn" href="mailto:hello@keithan.eu?subject=60-minute diagnostic">Book the call →</a>
     </div>
+
   </div>
 </section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer-top">
+    <div>
+      <div class="footer-brand">LXD Advisory</div>
+      <div class="footer-brand-sub">EU AI Act Article 12 &amp; 19 Compliance Methodology for Automotive R&amp;D Teams</div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.linkedin.com/in/keithan-cokbilir-b929a830" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="https://github.com/Keithan-C" target="_blank">GitHub</a>
+      <a class="footer-link" href="mailto:hello@keithan.eu">Email</a>
+      <a class="footer-link" href="https://www.lxdadvisory.de/pricing_page.html">Pricing</a>
+      <a class="footer-link" href="https://www.lxdadvisory.de/impressum.html">Impressum</a>
+      <a class="footer-link" href="https://www.lxdadvisory.de/privacy-policy.html">Privacy Policy</a>
+      <a class="footer-link" href="https://www.lxdadvisory.de/terms-of-service.html">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 LXD Advisory &nbsp;·&nbsp; August 2, 2026 enforcement deadline · <span id="days-footer">0</span> days remaining<br><br>
+    <strong>LEGAL DISCLAIMER:</strong> The information provided on this website is for general informational purposes only and does not constitute legal, regulatory, or professional compliance advice. LXD Advisory is not a law firm and does not provide legal services. Our services relate to compliance methodology, technical implementation, and engineering best practices. For specific legal or regulatory compliance questions, consult a qualified attorney or regulatory expert in your jurisdiction. We do not certify, audit, or guarantee regulatory compliance outcomes. Final compliance determination rests with regulatory authorities and your legal counsel. Services are provided "as is" without warranties of any kind. LXD Advisory's maximum liability shall not exceed fees paid for services rendered.
+  </div>
+</footer>
+
+<script>
+function updateCountdown() {
+  var deadline = new Date('2026-08-02T00:00:00Z');
+  var now = new Date();
+  var days = Math.max(0, Math.ceil((deadline - now) / (1000 * 60 * 60 * 24)));
+  var els = document.querySelectorAll('#days-remaining, #days-closing, #days-footer');
+  els.forEach(function(el) { if (el) el.textContent = days; });
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+</script>
+
+</body>
+</html>
